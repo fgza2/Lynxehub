@@ -27,12 +27,10 @@ RunService.RenderStepped:Connect(function()
 		local root = char and char:FindFirstChild("HumanoidRootPart")
 		local distance = (rootpart.Position - root.Position).Magnitude
 		
-		if distance <= 20 then
-			for _, part in pairs(char:GetChildren()) do
-				if part:IsA("BasePart") then
-					firetouchinterest(killpart, part, 0)
-					firetouchinterest(killpart, part, 1)
-				end
+		for _, part in pairs(char:GetChildren()) do
+			if part:IsA("BasePart") then
+				firetouchinterest(killpart, part, 0)
+				firetouchinterest(killpart, part, 1)
 			end
 		end
 	end
