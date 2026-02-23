@@ -1,35 +1,37 @@
-var = getgenv()
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
-var.lynxe = {}
-lynxe.configs = {}
 
-local lynxelib = loadstring(game:HttpGet("https://raw.githubusercontent.com/fgza2/LynxeUI/refs/heads/main/Lynxe.Main"))()
-
-local Window = lynxelib:CreateWindow({
-	Name = "Lynxe",
-	Icon = "rbxassetid://10709782497",
-
-	UItoggleBind = "P",
-
-	LynxeUIPrompts = false,
-
-	LoadingTitle = "Lynxe",
-	LoadingDescription = "This is a sword reach script",
-
-	ConfigSaving = {
-		Enabled = true,
-		FolderName = "LynxeReachHubConfigs",
-		FileName = "Configuration"
-	},
-
-	Logging = {
-		Enabled = true,
-		Url = "https://discord.com/api/webhooks/1475265425959948389/reed8wTwto9GNNgO6SaDv1VcED6_zRkDLI3nXgTVnf8G29ZjNlbDYwLyzOcIbm2z7MbI"
-	},
-
-	Discord = { 
-		Invite = "6mdtCbcgCB"
-	}
-})
-
-local HomeTab = Window:CreateHomeTab() 
+RunService.RenderStepped:Connect(function()
+	local character = player.Character
+	if not character then return end
+	
+	local rootpart = character and character:FindFirstChild("HumanoidRootPart")
+	
+	local killpart = character:FindFirstChild("KillBrick")
+	if not killpart then return end
+	
+	killpart.Masslass = true
+	killpart.Transparency = 0.85
+	killpart.Material = Enum.Material.Neon
+	killpart.Size = Vector3.new(15, 15, 15)
+	
+	for _, Player in pairs(Players:GetPlayers()) do
+		
+		local char = Player.Character
+		if not char then continue end
+		
+		local root = char and char:FindFirstChild("HumanoidRootPart")
+		local distance = (rootpart.Position - root.Position).Magnitude
+		
+		if distance <= 20 then
+			for _, part in pairs(char:GetChildren()) do
+				if part:IsA("BasePart") then
+					firetouchinterest(killpart, part, 0)
+					firetouchinterest(killpart, part, 1)
+				end
+			end
+		end
+	end
+end)
