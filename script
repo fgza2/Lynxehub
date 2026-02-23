@@ -12,7 +12,7 @@ RunService.RenderStepped:Connect(function()
 	local killpart = character:FindFirstChild("KillBrick")
 	if not killpart then return end
 	
-	killpart.Masslass = true
+	killpart.Massless = true
 	killpart.Anchored = false
 	rootpart.Anchored = false
 	killpart.Transparency = 0.85
