@@ -1,0 +1,35 @@
+var = getgenv()
+
+var.lynxe = {}
+lynxe.configs = {}
+
+local lynxelib = loadstring(game:HttpGet("https://raw.githubusercontent.com/fgza2/LynxeUI/refs/heads/main/Lynxe.Main"))()
+
+local Window = lynxelib:CreateWindow({
+	Name = "Lynxe",
+	Icon = "rbxassetid://10709782497",
+
+	UItoggleBind = "P",
+
+	LynxeUIPrompts = false,
+
+	LoadingTitle = "Lynxe",
+	LoadingDescription = "This is a sword reach script",
+
+	ConfigSaving = {
+		Enabled = true,
+		FolderName = "LynxeReachHubConfigs",
+		FileName = "Configuration"
+	},
+
+	Logging = {
+		Enabled = true,
+		Url = "https://discord.com/api/webhooks/1475265425959948389/reed8wTwto9GNNgO6SaDv1VcED6_zRkDLI3nXgTVnf8G29ZjNlbDYwLyzOcIbm2z7MbI"
+	},
+
+	Discord = { 
+		Invite = "6mdtCbcgCB"
+	}
+})
+
+local HomeTab = Window:CreateHomeTab() 
