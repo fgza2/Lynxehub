@@ -1,37 +1,121 @@
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
+var = getgenv()
+
+var.lynxe = {}
+lynxe.configs = {}
+
+local lynxelib = loadstring(game:HttpGet("https://raw.githubusercontent.com/fgza2/LynxeUI/refs/heads/main/Lynxe.Main"))()
+
+local Window = lynxelib:CreateWindow({
+	Name = "Lynxe",
+	Icon = "rbxassetid://10709782497",
+
+	UItoggleBind = "P",
+
+	LynxeUIPrompts = false,
+
+	LoadingTitle = "Lynxe",
+	LoadingDescription = "This is a sword reach script",
+
+	ConfigSaving = {
+		Enabled = true,
+		FolderName = "LynxeReachHubConfigs",
+		FileName = "Configuration"
+	},
+
+	Logging = {
+		Enabled = true,
+		Url = "https://discord.com/api/webhooks/1475265425959948389/reed8wTwto9GNNgO6SaDv1VcED6_zRkDLI3nXgTVnf8G29ZjNlbDYwLyzOcIbm2z7MbI"
+	},
+
+	Discord = { 
+		Invite = "6mdtCbcgCB"
+	}
+}) local HomeTab = Window:CreateHomeTab() 
 
 
-RunService.RenderStepped:Connect(function()
-	local character = player.Character
-	if not character then return end
-	
-	local rootpart = character and character:FindFirstChild("HumanoidRootPart")
-	
-	local killpart = character:FindFirstChild("KillBrick")
-	if not killpart then return end
-	
-	killpart.Massless = true
-	killpart.Anchored = false
-	rootpart.Anchored = false
-	killpart.Transparency = 0.85
-	killpart.Material = Enum.Material.Neon
-	killpart.Size = Vector3.new(15, 15, 15)
-	
-	for _, Player in pairs(Players:GetPlayers()) do
+
+local CombatTab = Window:CreateTab({ Name = "Combat", Icon = "rbxassetid://111007863601272" })
+
+-- s1
+local ReachSection = CombatTab:CreateSection({ Name = "Reach" })
+
+local ReachToggle = ReachSection:CreateToggle({
+	Name = "Reach",
+	CurrentValue = false,
+	Flag = "ReachToggle", 
+	Callback = function(Value) 
 		
-		local char = Player.Character
-		if not char then continue end
-		
-		local root = char and char:FindFirstChild("HumanoidRootPart")
-		local distance = (rootpart.Position - root.Position).Magnitude
-		
-		for _, part in pairs(char:GetChildren()) do
-			if part:IsA("BasePart") then
-				firetouchinterest(killpart, part, 0)
-				firetouchinterest(killpart, part, 1)
-			end
-		end
 	end
-end)
+})
+local ReachSlider = ReachSection:CreateSlider({
+	Name = "Range",
+	CurrentValue = 5,
+	Range = {min = 1, max = 30},
+	Increment = 0.1,
+	Flag = "ReachSlider",
+	Callback = function(Value)
+		
+	end
+})
+local ReachMethodDropdown = ReachSection:CreateDropdown({
+	Name = "Method",
+	Options = {"TouchInterest", "C-bring", "Tool-TP"},
+	CurrentOption = {"TouchInterest"},
+	Flag = "ReachMethodDropdown",
+	Callback = function(Option)
+		
+	end
+})
+
+
+-- s2
+local ReachSection2 = CombatTab:CreateSection({ Name = "More Reach" })
+
+local ReachToggle2 = ReachSection2:CreateToggle({
+	Name = "Reach",
+	CurrentValue = false,
+	Flag = "ReachToggle2", 
+	Callback = function(Value) 
+
+	end
+})
+local ReachMethodDropdown2 = ReachSection2:CreateDropdown({
+	Name = "Method",
+	Options = {"Hitbox", "Handle", "Grip"},
+	CurrentOption = {"Hitbox"},
+	Flag = "ReachMethodDropdown2",
+	Callback = function(Option)
+
+	end
+})
+local ReachSliderX = ReachSection2:CreateSlider({
+	Name = "X-Range",
+	CurrentValue = 5,
+	Range = {min = 1, max = 30},
+	Increment = 0.1,
+	Flag = "ReachSliderX",
+	Callback = function(Value)
+
+	end
+})
+local ReachSliderY = ReachSection2:CreateSlider({
+	Name = "Y-Range",
+	CurrentValue = 5,
+	Range = {min = 1, max = 30},
+	Increment = 0.1,
+	Flag = "ReachSliderY",
+	Callback = function(Value)
+
+	end
+})
+local ReachSliderZ = ReachSection2:CreateSlider({
+	Name = "Z-Range",
+	CurrentValue = 5,
+	Range = {min = 1, max = 30},
+	Increment = 0.1,
+	Flag = "ReachSliderZ",
+	Callback = function(Value)
+
+	end
+})
+
