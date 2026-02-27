@@ -59,7 +59,7 @@ local ReachSlider = ReachSection:CreateSlider({
 })
 local ReachMethodDropdown = ReachSection:CreateDropdown({
 	Name = "Method",
-	Options = {"TouchInterest", "C-bring", "Tool-TP", "son", "son2"}, 
+	Options = {"TouchInterest", "C-bring", "Tool-TP", "son", "son2"},
 	CurrentOption = {"TouchInterest"},
 	Flag = "ReachMethodDropdown",
 	Callback = function(Option)
